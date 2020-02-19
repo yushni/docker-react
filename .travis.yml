@@ -8,3 +8,16 @@ before_install:
 
 script:
     - docker run -e CI=true yurashni/react-app npm run test -- --coverage
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: "eu-central-1"
+    app: "react-app"
+    env: "ReactApp-env"
+    bucket_name: "elasticbeanstalk-eu-central-1-815984854118"
+    bucket_path: "react-app"
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    on:
+        branch: master
